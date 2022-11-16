@@ -1,5 +1,6 @@
 import './sass/index.scss';
 import { fetchImages } from './fetchImages'
+import { Notify } from 'notiflix';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
@@ -23,30 +24,19 @@ async function eventHandler(e) {
   loadBtn.style.display = 'none';
 
   page = 1;
-  name = searchQuery.value;
+  name = searchQuery.value.trim();
 
   fetchImages(name, page, perPage)
     .then(name => {
-      let totalPages = name.totalHits / perPage;
-
       if (name.hits.length > 0) {
        Notify.success(`Hooray! We found ${name.totalHits} images.`);
         renderGallery(name);
         new SimpleLightbox('.gallery a');
-   
-        if (page < totalPages) {
-          loadBtn.style.display = 'block';
-        } else {
-          loadBtn.style.display = 'none';
-         Notify.info(
-            "We're sorry, but you've reached the end of search results."
-          );
-        }
+       loadBtn.style.display = 'block';
       } else {
-       Notify.failure(
-          'Sorry, there are no images matching your search query. Please try again.'
-        );
-        gallery.innerHTML = '';
+         loadBtn.style.display = 'none';
+         Notify.failure(
+          'Sorry, there are no images matching your search query. Please try again.');
       }
     })
     .catch(error => console.log('ERROR: ' + error));
@@ -94,7 +84,7 @@ loadBtn.addEventListener(
       new SimpleLightbox('.gallery a');
       if (page >= totalPages) {
         loadBtn.style.display = 'none';
-        Notiflix.Notify.info(
+        Notify.info(
           "We're sorry, but you've reached the end of search results."
         );
       }
