@@ -1,37 +1,4 @@
-// .example {
-//   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-//     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-//   line-height: 1.5;
-//   background-color: #fff;
-//   color: #2f2f37;
-//   max-width: 960px;
-//   padding: 16px;
-// }
-
-// .example code {
-//   font-family: monospace;
-//   font-size: 16px;
-//   font-weight: 700;
-//   background-color: #ff6b0a;
-//   color: #fff;
-//   padding: 2px 6px;
-//   border-radius: 2px;
-// }
-
-// .example .background {
-//   height: 240px;
-//   // ❗️❗️❗️ The path to images from a SASS file
-//   // is always the same as from the css folder.
-//   background-image: url('../images/logo.png');
-//   background-size: cover;
-//   background-position: center;
-// }
-$mobile: 320px;
-$tablet: 768px;
-$desktop: 1440px;
-
-// Base
-
+@import '~node_modules/modern-normalize/modern-normalize.css';
 body {
   margin: 0;
   padding: 0;
@@ -59,17 +26,19 @@ p {
 }
 
 .container {
-  width: $mobile;
+  width: 320px;
   margin: 0 auto;
   margin-top: 110px;
   padding: 0 10px 0 10px;
-
-  @media screen and (min-width: $tablet) {
-    width: $tablet;
+}
+@media screen and (min-width: 768px) {
+  .container {
+    width: 768px;
   }
-
-  @media screen and (min-width: $desktop) {
-    width: $desktop;
+}
+@media screen and (min-width: 1440px) {
+  .container {
+    width: 1440px;
   }
 }
 
@@ -78,13 +47,10 @@ p {
   top: 0;
   left: 0;
   width: 100%;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   padding: 25px 0 25px 0;
-
   background: #cef447;
   background: linear-gradient(to right, #04c5d3, #e0eaea);
   box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.5);
@@ -94,24 +60,31 @@ p {
   width: 120px;
   height: 40px;
   padding: 10px;
-
   font-size: 16px;
-
   outline: none;
   border: none;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
-
-  &::placeholder {
-    font-size: 16px;
-    color: #cccccc;
-  }
-
-  @media screen and (min-width: $tablet) {
+}
+.search-form__input::-moz-placeholder {
+  font-size: 16px;
+  color: #cccccc;
+}
+.search-form__input:-ms-input-placeholder {
+  font-size: 16px;
+  color: #cccccc;
+}
+.search-form__input::placeholder {
+  font-size: 16px;
+  color: #cccccc;
+}
+@media screen and (min-width: 768px) {
+  .search-form__input {
     width: 400px;
   }
-
-  @media screen and (min-width: $desktop) {
+}
+@media screen and (min-width: 1440px) {
+  .search-form__input {
     width: 700px;
   }
 }
@@ -119,29 +92,25 @@ p {
 .search-form__button {
   width: 100px;
   height: 40px;
-
   font-size: 16px;
-
   border: none;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
-
   cursor: pointer;
   transition: background-color 250ms linear, color 250ms linear;
-
-  &:hover,
-  &:focus {
-    background-color: #04c5d3;
-    color: #ffffff;
-  }
-
-  @media screen and (min-width: $mobile) {
+}
+.search-form__button:hover, .search-form__button:focus {
+  background-color: #04c5d3;
+  color: #ffffff;
+}
+@media screen and (min-width: 320px) {
+  .search-form__button {
     width: 70px;
   }
 }
 
-.gallery {
-  @media screen and (min-width: $tablet) {
+@media screen and (min-width: 768px) {
+  .gallery {
     display: flex;
     flex-wrap: wrap;
     margin: -10px;
@@ -154,17 +123,19 @@ p {
   border-radius: 5px;
   overflow: hidden;
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
-  :last-child {
-    margin-bottom: 0;
-  }
-
-  @media screen and (min-width: $tablet) {
-    width: calc((100% - 10px * 4) / 2);
+}
+.photo-card :last-child {
+  margin-bottom: 0;
+}
+@media screen and (min-width: 768px) {
+  .photo-card {
+    width: calc((100% - 40px) / 2);
     margin: 10px;
   }
-
-  @media screen and (min-width: $desktop) {
-    width: calc((100% - 10px * 8) / 4);
+}
+@media screen and (min-width: 1440px) {
+  .photo-card {
+    width: calc((100% - 80px) / 4);
   }
 }
 
@@ -184,7 +155,6 @@ p {
 .load-more {
   width: 200px;
   height: 40px;
-
   margin-top: 50px;
   margin-bottom: 30px;
   margin-left: 50%;
@@ -192,27 +162,22 @@ p {
   font-size: 16px;
   border: none;
   border-radius: 5px;
-
   cursor: pointer;
   transition: background-color 250ms linear, color 250ms linear;
-
-  &:hover,
-  &:focus {
-    background-color: #04c5d3;
-    color: #ffffff;
-  }
-
-  &.is-hidden {
-    display: none;
-  }
+}
+.load-more:hover, .load-more:focus {
+  background-color: #04c5d3;
+  color: #ffffff;
+}
+.load-more.is-hidden {
+  display: none;
 }
 
 .end-collection-text {
   margin: 30px 0 30px 0;
   text-align: center;
   font-size: 20px;
-
-  &.is-hidden {
-    display: none;
-  }
 }
+.end-collection-text.is-hidden {
+  display: none;
+}/*# sourceMappingURL=index.css.map */
